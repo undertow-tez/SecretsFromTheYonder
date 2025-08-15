@@ -71,6 +71,53 @@
             );
             pointer-events: none;
         }
+
+        /* Decorative Border Elements */
+        .decorative-border {
+            position: absolute;
+            font-family: 'HighBlockscript', monospace;
+            color: #333;
+            font-size: 12px;
+            line-height: 1;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .border-top {
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .border-bottom {
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .border-left {
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .border-right {
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #333;
+        }
+
+        .corner-tl { top: 5px; left: 5px; }
+        .corner-tr { top: 5px; right: 5px; }
+        .corner-bl { bottom: 5px; left: 5px; }
+        .corner-br { bottom: 5px; right: 5px; }
         
         .header {
             text-align: center;
@@ -139,6 +186,50 @@
             height: 3px;
             width: 200px;
         }
+
+        /* Pattern Borders for Sections */
+        .pattern-border {
+            border: 2px solid #333;
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .pattern-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: 
+                repeating-linear-gradient(90deg, #333 0px, #333 8px, transparent 8px, transparent 16px),
+                repeating-linear-gradient(0deg, #333 0px, #333 8px, transparent 8px, transparent 16px);
+            z-index: -1;
+        }
+
+        .pattern-corners {
+            position: relative;
+        }
+
+        .pattern-corners::before,
+        .pattern-corners::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #333;
+        }
+
+        .pattern-corners::before {
+            top: -6px;
+            left: -6px;
+        }
+
+        .pattern-corners::after {
+            bottom: -6px;
+            right: -6px;
+        }
         
         .content {
             position: relative;
@@ -202,6 +293,169 @@
             right: 5px;
             bottom: 5px;
             border: 1px solid #222;
+        }
+
+        /* Legendary Comrades Images */
+        .comrade-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+        }
+
+        .comrade-image {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #444;
+            background: rgba(20, 20, 20, 0.8);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            perspective: 1000px;
+            position: relative;
+            height: 120px;
+        }
+
+        .comrade-image:hover {
+            border-color: #4a9eff;
+            background: rgba(25, 25, 25, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 158, 255, 0.2);
+        }
+
+        .comrade-flip-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .comrade-image.flipped .comrade-flip-container {
+            transform: rotateY(180deg);
+        }
+
+        .comrade-front, .comrade-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comrade-back {
+            transform: rotateY(180deg);
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #4a9eff;
+        }
+
+        .comrade-image img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #333;
+            margin-bottom: 8px;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        .blockscript-symbol {
+            font-family: 'HighBlockscript', monospace;
+            font-size: 48px;
+            color: #4a9eff;
+            text-shadow: 
+                0 0 10px #4a9eff,
+                0 0 20px #4a9eff,
+                0 0 30px #4a9eff;
+            animation: pulse-glow 2s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 10px #4a9eff,
+                    0 0 20px #4a9eff,
+                    0 0 30px #4a9eff;
+            }
+            50% { 
+                text-shadow: 
+                    0 0 20px #4a9eff,
+                    0 0 30px #4a9eff,
+                    0 0 40px #4a9eff,
+                    0 0 50px #4a9eff;
+            }
+        }
+
+        .comrade-name {
+            font-family: 'LowBlockscript', monospace;
+            font-size: 10px;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .special-blocks {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #4a9eff;
+            position: relative;
+        }
+
+        .special-blocks::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, #4a9eff, #9966ff, #4a9eff);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .special-block {
+            text-align: center;
+            padding: 15px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .special-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
+            border-color: #4a9eff;
+        }
+
+        .special-block img {
+            width: 64px;
+            height: 64px;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+        }
+
+        .special-block-name {
+            font-family: 'LowBlockscript', monospace;
+            font-size: 12px;
+            color: #4a9eff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #4a9eff;
         }
         
         .specs-grid {
@@ -401,6 +655,243 @@
             51%, 100% { opacity: 0; }
         }
         
+        /* Sacred Block Effects */
+        .creation-mode {
+            animation: creationPulse 0.1s ease-in-out;
+        }
+        
+        .creation-mode * {
+            animation: creationGlow 2s ease-in-out;
+        }
+        
+        .end-times-mode {
+            animation: endTimesShake 0.2s ease-in-out;
+        }
+        
+        .end-times-mode * {
+            animation: endTimesFlicker 3s ease-in-out;
+        }
+        
+        /* Super Creation Mode - Triggered after 3+ creation activations */
+        .super-creation-mode {
+            animation: superCreationVibrate 0.1s ease-in-out infinite;
+        }
+        
+        .super-creation-mode * {
+            animation: superCreationGlow 4s ease-in-out;
+        }
+        
+        @keyframes superCreationVibrate {
+            0% { transform: translate(0); }
+            25% { transform: translate(-1px, 1px) rotate(0.5deg); }
+            50% { transform: translate(1px, -1px) rotate(-0.5deg); }
+            75% { transform: translate(-1px, -1px) rotate(0.5deg); }
+            100% { transform: translate(1px, 1px) rotate(-0.5deg); }
+        }
+        
+        @keyframes superCreationGlow {
+            0% { 
+                color: inherit; 
+                text-shadow: inherit;
+                border-color: inherit;
+            }
+            15% { 
+                color: #00ff00; 
+                text-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00;
+                border-color: #00ff00;
+            }
+            30% { 
+                color: #4a9eff; 
+                text-shadow: 0 0 40px #4a9eff, 0 0 80px #4a9eff;
+                border-color: #4a9eff;
+            }
+            45% { 
+                color: #ff00ff; 
+                text-shadow: 0 0 35px #ff00ff, 0 0 70px #ff00ff;
+                border-color: #ff00ff;
+            }
+            60% { 
+                color: #ffff00; 
+                text-shadow: 0 0 45px #ffff00, 0 0 90px #ffff00;
+                border-color: #ffff00;
+            }
+            75% { 
+                color: #ff6600; 
+                text-shadow: 0 0 40px #ff6600, 0 0 80px #ff6600;
+                border-color: #ff6600;
+            }
+            90% { 
+                color: #4a9eff; 
+                text-shadow: 0 0 50px #4a9eff, 0 0 100px #4a9eff;
+                border-color: #4a9eff;
+            }
+            100% { 
+                color: inherit; 
+                text-shadow: inherit;
+                border-color: inherit;
+            }
+        }
+        
+        @keyframes creationPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes creationGlow {
+            0% { 
+                color: inherit; 
+                text-shadow: inherit;
+                border-color: inherit;
+            }
+            25% { 
+                color: #4a9eff; 
+                text-shadow: 0 0 20px #4a9eff, 0 0 40px #4a9eff;
+                border-color: #4a9eff;
+            }
+            50% { 
+                color: #6bb6ff; 
+                text-shadow: 0 0 30px #6bb6ff, 0 0 60px #6bb6ff;
+                border-color: #6bb6ff;
+            }
+            75% { 
+                color: #4a9eff; 
+                text-shadow: 0 0 20px #4a9eff, 0 0 40px #4a9eff;
+                border-color: #4a9eff;
+            }
+            100% { 
+                color: inherit; 
+                text-shadow: inherit;
+                border-color: inherit;
+            }
+        }
+        
+        @keyframes endTimesShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        
+        @keyframes endTimesFlicker {
+            0% { 
+                color: inherit; 
+                text-shadow: inherit;
+                opacity: 1;
+            }
+            10% { 
+                color: #ff4444; 
+                text-shadow: 0 0 15px #ff4444;
+                opacity: 0.8;
+            }
+            15% { 
+                opacity: 0.3;
+            }
+            20% { 
+                color: #ff6666; 
+                text-shadow: 0 0 25px #ff6666;
+                opacity: 1;
+            }
+            30% { 
+                color: #cc0000; 
+                text-shadow: 0 0 20px #cc0000;
+                opacity: 0.6;
+            }
+            35% { 
+                opacity: 0.1;
+            }
+            40% { 
+                opacity: 0.9;
+                color: #ff4444;
+            }
+            50% { 
+                color: #ff0000; 
+                text-shadow: 0 0 30px #ff0000, 0 0 50px #ff0000;
+                opacity: 0.7;
+            }
+            70% { 
+                color: #ff4444; 
+                text-shadow: 0 0 15px #ff4444;
+                opacity: 1;
+            }
+            85% { 
+                opacity: 0.4;
+            }
+            100% { 
+                color: inherit; 
+                text-shadow: inherit;
+                opacity: 1;
+            }
+        }
+        
+        /* Enhanced Matrix Effects */
+        .creation-matrix {
+            color: #4a9eff !important;
+            text-shadow: 0 0 15px #4a9eff !important;
+        }
+        
+        .end-times-matrix {
+            color: #ff4444 !important;
+            text-shadow: 0 0 15px #ff4444 !important;
+        }
+        
+        /* Page Overlays */
+        .creation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0;
+            animation: creationOverlay 3s ease-in-out;
+        }
+        
+        .end-times-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 68, 68, 0.15) 0%, rgba(204, 0, 0, 0.05) 70%);
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0;
+            animation: endTimesOverlay 4s ease-in-out;
+        }
+        
+        @keyframes creationOverlay {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes endTimesOverlay {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Floating Effects */
+        .floating-symbol {
+            position: fixed;
+            font-family: 'HighBlockscript', monospace;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatAway 4s ease-out forwards;
+        }
+        
+        @keyframes floatAway {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) rotate(360deg);
+            }
+        }
+        
         /* Interactive Elements */
         .clickable-symbol {
             cursor: pointer;
@@ -422,7 +913,7 @@
             border: 2px solid #4a9eff;
             padding: 20px;
             color: #4a9eff;
-            font-family: 'HighBlockscript', monospace;
+            font-family: 'LowBlockscript', monospace;
             z-index: 1000;
             display: none;
             text-align: center;
@@ -462,6 +953,17 @@
             .section-title::after {
                 display: none;
             }
+
+            .comrade-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .comrade-image img {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
@@ -478,6 +980,17 @@
     
     <div class="manuscript">
         <div class="border-pattern"></div>
+        
+        <!-- Decorative Border Elements -->
+        <div class="decorative-border border-top">▂▄▆▅▇▆▄▂</div>
+        <div class="decorative-border border-bottom">▂▄▆▅▇▆▄▂</div>
+        <div class="decorative-border border-left">▂▄▆▅▇▆▄▂</div>
+        <div class="decorative-border border-right">▂▄▆▅▇▆▄▂</div>
+        
+        <div class="corner-decoration corner-tl"></div>
+        <div class="corner-decoration corner-tr"></div>
+        <div class="corner-decoration corner-bl"></div>
+        <div class="corner-decoration corner-br"></div>
         
         <div class="header">
             <div class="comrade-border">
@@ -500,7 +1013,7 @@
         </div>
         
         <div class="content">
-            <div class="section">
+            <div class="section pattern-border pattern-corners">
                 <div class="section-title">THE DISCOVERY</div>
                 <div class="blockscript-pattern">_COMRADE _COMRADE _COMRADE</div>
                 <div class="text-block">
@@ -516,14 +1029,150 @@
                     <span class="symbol-validator clickable-symbol" data-secret="ETHERNAL PRIME: THE FIRST AND LAST">_ETHERNALPRIME</span>
                 </div>
             </div>
+
+            <!-- Legendary Comrades Gallery -->
+            <div class="comrade-gallery">
+                <div class="comrade-image" data-symbol="_VALIDATORREX">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Validator%20Rex%20in%20full%20Gas%20Wars%20Armor%239927.png?raw=true" alt="Validator Rex">
+                            <div class="comrade-name">Validator Rex</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_VALIDATORREX</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_ETHERNALPRIME">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Ethernal%20Prime%239893.png?raw=true" alt="Ethernal Prime">
+                            <div class="comrade-name">Ethernal Prime</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_ETHERNALPRIME</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_RUGLORD">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/The%20Rug%20Lord%239926.png?raw=true" alt="The Ruglord">
+                            <div class="comrade-name">The Ruglord</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_RUGLORD</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_PIRATEKING">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Pirate%20King%20of%20the%20Drain%20Plains%239905.png?raw=true" alt="Pirate King">
+                            <div class="comrade-name">Pirate King</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_PIRATEKING</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_0XDEAD">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/0xDead%239928.png?raw=true" alt="0xDead">
+                            <div class="comrade-name">0xDead</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_0XDEAD</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_FIRSTWEI">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/The%20First%20Wei%239919.png?raw=true" alt="The First Wei">
+                            <div class="comrade-name">The First Wei</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_FIRSTWEI</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_HOLESOMEMAN">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/The%20Holesome%20Man%239924.png?raw=true" alt="The Holesome Man">
+                            <div class="comrade-name">The Holesome Man</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_HOLESOMEMAN</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_TECHNOLORD">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Techno%20Lord%20XIX%239912.png?raw=true" alt="Techno Lord XIX">
+                            <div class="comrade-name">Techno Lord XIX</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_TECHNOLORD</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_PURRPEOPLE">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Purr%20People%20Pure%20Breed%239906.png?raw=true" alt="Purr People Pure Breed">
+                            <div class="comrade-name">Purr People Pure Breed</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_PURRPEOPLE</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comrade-image" data-symbol="_GOLDENBOY">
+                    <div class="comrade-flip-container">
+                        <div class="comrade-front">
+                            <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Lonely%20Golden%20Boy%239898.png?raw=true" alt="Lonely Golden Boy">
+                            <div class="comrade-name">Lonely Golden Boy</div>
+                        </div>
+                        <div class="comrade-back">
+                            <div class="blockscript-symbol">_GOLDENBOY</div>
+                            <div class="comrade-name">High Blockscript</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="terminal-id">
+            <!-- The Sacred Blocks -->
+            <div class="special-blocks">
+                <div class="special-block">
+                    <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/Genesis%20Block%239894.png?raw=true" alt="Genesis Block">
+                    <div class="special-block-name">Genesis Block</div>
+                </div>
+                <div class="special-block">
+                    <img src="https://github.com/NoMoreLabs/Call-Data-Comrades/blob/main/art/comrades_32px/legendary/The%20Omega%20Block%239925.png?raw=true" alt="Omega Block">
+                    <div class="special-block-name">Omega Block</div>
+                </div>
+            </div>
+            
+            <div class="terminal-id pattern-border">
                 <div class="blockscript-pattern">_GM _COMRADE _GM</div>
                 <span class="glow blockscript-large">OK COMPUTER #1028 IS THE KEY</span><span class="terminal-cursor">█</span>
                 <div class="blockscript-pattern">_LFG _BLOCKCITY _LFG</div>
             </div>
             
-            <div class="section">
+            <div class="section pattern-border pattern-corners">
                 <div class="section-title">THE SACRED SPECIFICATIONS</div>
                 <div class="blockscript-pattern">_RUGLORD _DRAINPLAINS _RUGLORD</div>
                 <div class="specs-grid">
@@ -550,7 +1199,7 @@
                 </div>
             </div>
             
-            <div class="sacred-text">
+            <div class="sacred-text pattern-corners">
                 <div class="legendary-symbols">
                     <span class="symbol-genesis clickable-symbol" data-secret="ETHERNAL PRIME GUARDS THE SACRED CODE">_ETHERNALPRIME</span>
                     <span class="symbol-yonder clickable-symbol" data-secret="THE YONDER BRIDGES ALL WORLDS">_THEYONDER</span>
@@ -567,7 +1216,7 @@
                 <div class="blockscript-pattern">_COMRADE _HEART _COMRADE _HEART _COMRADE</div>
             </div>
             
-            <div class="section">
+            <div class="section pattern-border pattern-corners">
                 <div class="section-title">OPERATIONAL DOCTRINE</div>
                 <div class="blockscript-pattern">_BACC137 _DRAINPLAINS _BACC137</div>
                 <div class="text-block">
@@ -595,7 +1244,7 @@
             
             <div class="ornament">_COMRADE _SKULL _COMRADE</div>
             
-            <div class="section">
+            <div class="section pattern-border pattern-corners">
                 <div class="section-title">THE ETERNAL COMMAND</div>
                 <div class="blockscript-pattern">_GM _LFG _GN</div>
                 <div class="sacred-text">
@@ -619,7 +1268,7 @@
             <div class="divider-pattern"></div>
         </div>
         
-        <div class="footer">
+        <div class="footer pattern-border">
             <div class="blockscript-pattern">_BLOCKCITY _COMRADE _BLOCKCITY</div>
             TRANSLATED FROM YONDER GLYPHS BY THE HOLESOME MAN<br>
             CALL DATA COMRADES RESEARCH DIVISION<br>
@@ -679,14 +1328,230 @@
                     }
                 });
             });
+
+            // Add click listeners to comrade images for flipping
+            const comradeImages = document.querySelectorAll('.comrade-image');
+            comradeImages.forEach(image => {
+                image.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+            });
+
+            // Sacred Block Effects
+            const genesisBlock = document.querySelector('.special-block:first-child');
+            const omegaBlock = document.querySelector('.special-block:last-child');
+
+            genesisBlock.addEventListener('click', function() {
+                triggerCreationMode();
+            });
+
+            omegaBlock.addEventListener('click', function() {
+                triggerEndTimesMode();
+            });
             
             // Close secret message when clicking outside
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.clickable-symbol') && !e.target.closest('.secret-message')) {
+                if (!e.target.closest('.clickable-symbol') && !e.target.closest('.secret-message') && !e.target.closest('.special-block')) {
                     hideSecret();
                 }
             });
         });
+        
+        // Sacred Block Effect Functions
+        let creationModeCount = 0;
+        let lastActionWasCreation = false;
+        
+        function triggerCreationMode() {
+            // Track consecutive creation mode activations
+            if (lastActionWasCreation) {
+                creationModeCount++;
+            } else {
+                creationModeCount = 1;
+            }
+            lastActionWasCreation = true;
+            
+            // Check if we should trigger super creation mode
+            if (creationModeCount >= 3) {
+                triggerSuperCreationMode();
+                return;
+            }
+            
+            // Regular creation mode
+            document.body.classList.add('creation-mode');
+            
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'creation-overlay';
+            document.body.appendChild(overlay);
+            
+            // Spawn rapid matrix characters
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createEnhancedMatrixChar('creation');
+                }, i * 50);
+            }
+            
+            // Create floating Genesis symbols
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFloatingSymbol('_GENESIS', '#4a9eff');
+                }, i * 200);
+            }
+            
+            // Show secret message
+            setTimeout(() => {
+                showSecret('genesis protocol activated: the yonder awakens to your presence, comrade');
+            }, 500);
+            
+            // Clean up after animation
+            setTimeout(() => {
+                document.body.classList.remove('creation-mode');
+                overlay.remove();
+            }, 3000);
+        }
+        
+        function triggerSuperCreationMode() {
+            // Reset counter and add super creation mode
+            creationModeCount = 0;
+            document.body.classList.add('super-creation-mode');
+            
+            // Create rainbow overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'creation-overlay';
+            overlay.style.background = 'radial-gradient(circle, rgba(74, 158, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 30%, rgba(0, 255, 0, 0.1) 60%, transparent 80%)';
+            document.body.appendChild(overlay);
+            
+            // Flip ALL comrade images to show blockscript symbols
+            const allComradeImages = document.querySelectorAll('.comrade-image');
+            allComradeImages.forEach(image => {
+                image.classList.add('flipped');
+            });
+            
+            // Spawn LOTS of matrix characters in rainbow colors
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createEnhancedMatrixChar('super-creation');
+                }, i * 30);
+            }
+            
+            // Create floating symbols of different types
+            const symbols = ['_GENESIS', '_VALIDATORREX', '_THEYONDER', '_BLOCKCITY', '_COMRADE'];
+            const colors = ['#4a9eff', '#00ff00', '#ff00ff', '#ffff00', '#ff6600'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * symbols.length);
+                    createFloatingSymbol(symbols[randomIndex], colors[randomIndex]);
+                }, i * 150);
+            }
+            
+            // Show special secret message
+            setTimeout(() => {
+                showSecret('super genesis protocol unleashed! the yonder transcends all dimensions! all comrades unite!');
+            }, 800);
+            
+            // Clean up after longer animation
+            setTimeout(() => {
+                document.body.classList.remove('super-creation-mode');
+                overlay.remove();
+                
+                // Flip comrade images back to normal after a delay
+                setTimeout(() => {
+                    allComradeImages.forEach(image => {
+                        image.classList.remove('flipped');
+                    });
+                }, 1000);
+            }, 5000);
+        }
+        
+        function triggerEndTimesMode() {
+            // Reset creation mode counter since this isn't creation
+            lastActionWasCreation = false;
+            creationModeCount = 0;
+            
+            // Add end times mode class to body
+            document.body.classList.add('end-times-mode');
+            
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'end-times-overlay';
+            document.body.appendChild(overlay);
+            
+            // Spawn rapid red matrix characters
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createEnhancedMatrixChar('end-times');
+                }, i * 40);
+            }
+            
+            // Create floating skull symbols
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    createFloatingSymbol('_SKULL', '#ff4444');
+                }, i * 300);
+            }
+            
+            // Show secret message
+            setTimeout(() => {
+                showSecret('omega protocol initiated: the end times draw near, prepare for the final block');
+            }, 800);
+            
+            // Clean up after animation
+            setTimeout(() => {
+                document.body.classList.remove('end-times-mode');
+                overlay.remove();
+            }, 4000);
+        }
+        
+        function createEnhancedMatrixChar(mode) {
+            const chars = ['_GENESIS', '_VALIDATORREX', '_THEYONDER', '_BLOCKCITY', '_COMRADE', '_LFG', '_GM', '_PIRATEKING', '_0XDEAD', '_FIRSTWEI', '_BACC137', '_RUGLORD', '_HEART', '_SKULL'];
+            const char = document.createElement('div');
+            
+            if (mode === 'super-creation') {
+                // Rainbow matrix characters for super creation mode
+                const colors = ['#4a9eff', '#00ff00', '#ff00ff', '#ffff00', '#ff6600', '#00ffff'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                char.className = 'matrix-char';
+                char.style.color = randomColor;
+                char.style.textShadow = `0 0 15px ${randomColor}`;
+            } else {
+                char.className = 'matrix-char ' + (mode === 'creation' ? 'creation-matrix' : 'end-times-matrix');
+            }
+            
+            char.textContent = chars[Math.floor(Math.random() * chars.length)];
+            char.style.left = Math.random() * 100 + 'vw';
+            char.style.animationDuration = (mode === 'super-creation' ? Math.random() * 1 + 0.5 : Math.random() * 1.5 + 1) + 's';
+            char.style.animationDelay = '0s';
+            char.style.fontSize = (Math.random() * 8 + 14) + 'px';
+            
+            document.getElementById('matrixBg').appendChild(char);
+            
+            // Remove the character after animation completes
+            setTimeout(() => {
+                if (char.parentNode) {
+                    char.parentNode.removeChild(char);
+                }
+            }, mode === 'super-creation' ? 2000 : 3000);
+        }
+        
+        function createFloatingSymbol(symbol, color) {
+            const floatingSymbol = document.createElement('div');
+            floatingSymbol.className = 'floating-symbol';
+            floatingSymbol.textContent = symbol;
+            floatingSymbol.style.color = color;
+            floatingSymbol.style.textShadow = `0 0 15px ${color}`;
+            floatingSymbol.style.left = Math.random() * 80 + 10 + '%';
+            floatingSymbol.style.top = Math.random() * 60 + 20 + '%';
+            
+            document.body.appendChild(floatingSymbol);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (floatingSymbol.parentNode) {
+                    floatingSymbol.parentNode.removeChild(floatingSymbol);
+                }
+            }, 4000);
+        }
         
         // Konami code easter egg
         let konamiCode = [];
@@ -699,7 +1564,7 @@
             }
             
             if (JSON.stringify(konamiCode) === JSON.stringify(targetSequence)) {
-                showSecret('KONAMI CODE ACTIVATED: THE YONDER ACKNOWLEDGES YOUR SKILLS, COMRADE');
+                showSecret('konami code activated: the yonder acknowledges your skills, comrade');
                 konamiCode = [];
             }
         });
